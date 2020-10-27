@@ -1,0 +1,481 @@
+% \iffalse meta-comment
+%
+% File: unitipa.dtx
+% ---------------------------------------------------------------------------
+% Package:     unitipa
+% Author:      Niranjan
+% Description:  TIPA typefaces with Unicode characters.
+% Repository:   https://gitlab.com/niranjanvikastambe/unitipa
+% Bug tracker:  https://gitlab.com/niranjanvikastambe/unitipa/-/issues
+% License:      The LaTeX Project Public License v1.3c or later.
+% ---------------------------------------------------------------------------
+% This work may be distributed and/or modified under the conditions of the 
+% LaTeX Project Public License, either version 1.3c of this license or (at 
+% your option) any later version.
+% 
+% The latest version of this license is in
+% 
+%     http://www.latex-project.org/lppl.txt.
+% 
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Niranjan.
+% 
+% This work consists of the files unitipa.dtx
+%                                 unitipa.ins
+% and the derived file            unitipa.sty.
+% \fi
+% \iffalse
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+--------------------------------------------------------------------------
+Package:      unitipa
+Author:       Niranjan
+Version:      0.1  (21 September, 2020)
+Description:  TIPA typefaces with Unicode characters.
+Repository:   https://gitlab.com/niranjanvikastambe/unitipa
+Bug tracker:  https://gitlab.com/niranjanvikastambe/unitipa/-/issues
+License:      The LaTeX Project Public License v1.3c or later.
+--------------------------------------------------------------------------
+%</readme>
+%<*internal>
+\fi
+%</internal>
+%<*driver|package>
+\def\unitipaPackageName{unitipa}
+\def\unitipaPackageVersion{0.1}
+\def\unitipaPackageDate{2020/21/09}
+\def\unitipaPackageDescription{TIPA typefaces with Unicode characters.}
+%</driver|package>
+%<*driver>
+\documentclass{l3doc}
+\usepackage{tipa}
+\usepackage{graphicx}
+\usepackage{unitipa}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+colorlinks,
+linkcolor=red!60!black,
+citecolor=green!60!black,
+urlcolor=blue!60!black
+}
+\usepackage{fontawesome5}
+\begin{document}
+    \DocInput{\unitipaPackageName.dtx}
+\end{document}
+%</driver>
+% \fi
+% \title{The \pkg{\unitipaPackageName} package}
+% \author{Niranjan}
+% \date^^A
+%   {^^A
+%     Version \unitipaPackageVersion\ --- \unitipaPackageDate\\[1ex]^^A
+%     {\small\faIcon{link}\quad\url{https://ctan.org/pkg/unitipa}}\\^^A
+%     {\small\faIcon{gitlab}\quad\url{https://gitlab.com/niranjanvikastambe/unitipa}}^^A
+%   }
+% \maketitle
+
+% This package converts Unicode characters into TIPA commands, which gives us \pkg{tipa} typefaces, without actually learning the \pkg{tipa} commands in much details. This package needs Lua\LaTeX\ as the compiler for correctly typesetting the IPA diacritics. TIPA was designed to match with the Computer Modern design, no other IPA font matches with traditional \LaTeX\ font. This package is helpful for getting the beautiful \pkg{tipa} shapes with Unicode characters. This package assumes that the user knows how to type IPA Unicode. Following is the list of symbols that \textit{cannot} be used with the traditional \LaTeX\ font. Every other symbol in the IPA chart is present in the current \LaTeX\ font.
+% \begin{description}
+% \item[Plosives] ʈ ɖ ɟ ɢ ʔ
+% \item[Nasals] ɱ ɳ ɴ
+% \item[Trills] ʙ ʀ
+% \item[Taps or flaps] ⱱ ɾ ɽ
+% \item[Fricatives] ɸ β θ ʃ ʒ ʂ ʐ ɣ χ ʁ ʕ ɦ
+% \item[Lateral fricatives] ɬ ɮ
+% \item[Approximants] ʋ ɹ ɻ ɰ
+% \item[Lateral approximants] ɭ ʎ ʟ
+% \item[Affricates] ʧ ʤ ʦ ʣ
+% \item[Close vowels] ɨ ʉ ɯ
+% \item[Near-close vowels] ɪ ʏ ʊ
+% \item[Close-mid vowels] ɵ ɤ
+% \item[Open-mid vowels] ɛ ɜ ɞ ʌ ɔ
+% \item[Near-open vowels] ɐ ɶ ɒ
+% \item[Clicks] ʘ ǀ ǃ ǂ ǁ
+% \item[Voiced Implosives] ɓ ɗ ʄ ɠ ʛ
+% \item[Ejective] ʼ
+% \item[Suprasegmentals] ˈ ˌ ː ˑ
+% \item[Other symbols] ʍ ɥ ʜ ʢ ʡ ɕ ʑ ɺ ɧ
+% \item[Dependent diacritics] k̥ e̬ o̹ o̜ u̟ l̠ e̽ m̩ a̯ b̤ t̼ l̴ ɛ̝ e̞ e̘ e̙ t̪ t̺ n̻ p̚
+% \item[Independent diacritics] kʰ gʱ kʷ cʲ kˠ pˤ
+% \item[Tie bars] t͜s k͡p
+% \item[Tones] ꜜ ꜛ a᷄ e᷅ e᷈
+% \end{description}
+% \begin{documentation}
+% \section{Package options}
+% \begin{function}{nodiacritics}
+% If you are very sure that you don't need any IPA diacritics in your document, you can load the package with this option. If this option is loaded, package can be compiled with other compilers too, but no IPA diacritic will be printed.
+% \end{function}
+% \begin{function}{ipafont}
+% IPA character [ⱱ] is not available in \pkg{tipa}, but for the convenience of users, this character is coded with Doulos SIL as it seemed to me the closest match to \pkg{tipa} typeface. If you don't have this font, please install package \pkg{\href{https://ctan.org/pkg/doulossil}{doulossil}} or download the font from \href{https://software.sil.org/doulos/}{here}. If users want to change the font used for this character, they can simply add the font name as the value to this option.
+% \begin{syntax}
+% ipafont=\meta{font name}
+% \end{syntax}
+% \end{function}
+% \end{documentation}
+% \begin{implementation}
+% \section{Implementation}
+%    \begin{macrocode}
+%<@@=unitipa>
+%<*package>
+%    \end{macrocode}
+%    \begin{macrocode}
+\ProvidesPackage{unitipa}[2020/21/09 v0.1
+TIPA typefaces with unicode characters]
+\RequirePackage{tipa}
+%    \end{macrocode}
+% Provide package with its basic information and load package \pkg{tipa}.
+%    \begin{macrocode}
+\RequirePackage{graphicx}
+%    \end{macrocode}
+% Package \pkg{graphicx} is needed for printing [ɞ] correctly. See line no.\ 295.
+%    \begin{macrocode}
+\RequirePackage{newunicodechar}
+\RequirePackage{fontspec}
+\RequirePackage{pgfkeys}
+\pgfkeys{
+    unitipa/.is family, unitipa/.cd,
+    ipafont/.code={\setfontfamily{\ipa}{#1}},
+    ipafont=DoulosSIL,
+}
+\DeclareTextFontCommand{\ipatext}{\ipa}
+\def\unitipa@ipafont#1{\pgfkeys{unitipa/.cd,#1}}
+\DeclareOption*{\expandafter\unitipa@ipafont\expandafter{\CurrentOption}}
+%    \end{macrocode}
+% Option \verb|ipafont| provided using \pkg{pgfkeys}.
+%    \begin{macrocode}
+\newif\ifnodiacritics
+\nodiacriticsfalse
+\DeclareOption{nodiacritics}{\nodiacriticstrue}
+\ProcessOptions\relax
+\ifnodiacritics
+\relax
+\else
+\RequirePackage{iftex}
+\RequirePackage{luacode}
+\RequireLuaTeX
+%% Dependent diacritic marks
+\begin{luacode}
+    function voiceless ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̥', '\\textsubring{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    voiceless, "voiceless")}
+\begin{luacode}
+    function voiced ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̬', '\\textsubwedge{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    voiced, "voiced")}
+\begin{luacode}
+    function morerounded ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̹', '\\textsubrhalfring{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    morerounded, "morerounded")}
+\begin{luacode}
+    function lessrounded ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̜', '\\textsublhalfring{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    lessrounded, "lessrounded")}
+\begin{luacode}
+    function advanced ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̟', '\\textsubplus{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    advanced, "advanced")}
+\begin{luacode}
+    function retracted ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̠', '\\textsubbar{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    retracted, "retracted")}
+\begin{luacode}
+    function midcentralized ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̽', '\\textovercross{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    midcentralized, "midcentralized")}
+\begin{luacode}
+    function syllabic ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̩', '\\textsyllabic{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    syllabic, "syllabic")}
+\begin{luacode}
+    function nonsyllabic ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̯', '\\textsubarch{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    nonsyllabic, "nonsyllabic")}
+\begin{luacode}
+    function breathyvoiced ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̤', '\\textsubumlaut{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    breathyvoiced, "breathyvoiced")}
+\begin{luacode}
+    function linguolabial ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̼', '\\textseagull{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    linguolabial, "linguolabial")}
+\begin{luacode}
+    function velarized ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̴', '\\textsuperimposetilde{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    velarized, "velarized")}
+\begin{luacode}
+    function raised ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̝', '\\textraising{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    raised, "raised")}
+\begin{luacode}
+    function lowered ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̞', '\\textlowering{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    lowered, "lowered")}
+\begin{luacode}
+    function advancedtr ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̘', '\\textadvancing{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    advancedtr, "advancedtr")}
+\begin{luacode}
+    function retractedtr ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̙', '\\textretracting{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    retractedtr, "retractedtr")}
+\begin{luacode}
+    function dental ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̪', '\\textsubbridge{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    dental, "dental")}
+\begin{luacode}
+    function apical ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̺', '\\textinvsubbridge{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    apical, "apical")}
+\begin{luacode}
+    function laminal ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̻', '\\textsubsquare{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    laminal, "laminal")}
+\begin{luacode}
+    function unaudible ( s )
+    s = unicode.utf8.gsub ( s , '(%a)̚', '%1\\textcorner' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    unaudible, "unaudible")}
+%% Tie bars
+\begin{luacode}
+    function tiebarup ( s )
+    s = unicode.utf8.gsub ( s , '(%a)͡(%a)', '\\texttoptiebar{%1%2}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    tiebarup, "tiebarup")}
+\begin{luacode}
+    function tiebardown ( s )
+    s = unicode.utf8.gsub ( s , '(%a)͜(%a)', '\\textbottomtiebar{%1%2}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    tiebardown, "tiebardown")}
+\begin{luacode}
+    function risefall ( s )
+    s = unicode.utf8.gsub ( s , '(%a)᷈', '\\textrisefall{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    risefall, "risefall")}
+\begin{luacode}
+    function rising ( s )
+    s = unicode.utf8.gsub ( s , '(%a)᷄', '\\texthighrise{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    rising, "rising")}
+\begin{luacode}
+    function falling ( s )
+    s = unicode.utf8.gsub ( s , '(%a)᷅', '\\textlowrise{%1}' )
+    return s
+    end
+\end{luacode}
+\directlua{luatexbase.add_to_callback("process_input_buffer",
+    falling, "falling")}
+\fi
+%    \end{macrocode}
+% Option \verb|nodiacritics| provided for using the package without Lua\LaTeX. Enabling this option won't print any diacritics. Help from Samcarter and Mico Loretan on different platforms\footnote{Samcarter's \href{https://topanswers.xyz/tex?q=1332\#a1577}{answer} on TopAnswer \& Mico Loretan's \href{https://tex.stackexchange.com/a/563447/174620}{answer} on TeX.SE.} gave a right direction to this code.
+%    \begin{macrocode}
+%% Pulmonic Consonants
+%% Plosives
+\newunicodechar{ʈ}{\textrtailt}
+\newunicodechar{ɖ}{\textrtaild}
+\newunicodechar{ɟ}{\textbardotlessj}
+\newunicodechar{ɢ}{\textscg}
+\newunicodechar{ʔ}{\textglotstop}
+%% Nasals
+\newunicodechar{ɱ}{\textltailm}
+\newunicodechar{ɳ}{\textrtailn}
+\newunicodechar{ɴ}{\textscn}
+%% Trills
+\newunicodechar{ʙ}{\textscb}
+\newunicodechar{ʀ}{\textscr}
+%% Taps or flaps
+\newunicodechar{ⱱ}{\ipatext{ⱱ}} %% Sorry for the bad typography!
+\newunicodechar{ɾ}{\textfishhookr}
+\newunicodechar{ɽ}{\textrtailr}
+%% Fricatives
+\newunicodechar{ɸ}{\textphi}
+\newunicodechar{β}{\textbeta}
+\newunicodechar{θ}{\texttheta}
+\newunicodechar{ʃ}{\textesh}
+\newunicodechar{ʒ}{\textyogh}
+\newunicodechar{ʂ}{\textrtails}
+\newunicodechar{ʐ}{\textrtailz}
+\newunicodechar{ʝ}{\textctj}
+\newunicodechar{ɣ}{\textgamma}
+\newunicodechar{χ}{\textchi}
+\newunicodechar{ʁ}{\textinvscr}
+\newunicodechar{ʕ}{\textrevglotstop}
+\newunicodechar{ɦ}{\texthth}
+%% Lateral fricatives
+\newunicodechar{ɬ}{\textbeltl}
+\newunicodechar{ɮ}{\textlyoghlig}
+%% Approximants
+\newunicodechar{ʋ}{\textscriptv}
+\newunicodechar{ɹ}{\textturnr}
+\newunicodechar{ɻ}{\textturnrrtail}
+\newunicodechar{ɰ}{\textturnmrleg}
+%% Lateral approximants
+\newunicodechar{ɭ}{\textrtaill}
+\newunicodechar{ʎ}{\textturny}
+\newunicodechar{ʟ}{\textscl}
+%% Affricates
+\newunicodechar{ʧ}{\textteshlig}
+\newunicodechar{ʤ}{\textdyoghlig}
+\newunicodechar{ʦ}{\texttslig}
+\newunicodechar{ʣ}{\textdzlig}
+%% Vowels
+%% Close
+\newunicodechar{ɨ}{\textbari}
+\newunicodechar{ʉ}{\textbaru}
+\newunicodechar{ɯ}{\textturnm}
+%% Near-close
+\newunicodechar{ɪ}{\textsci}
+\newunicodechar{ʏ}{\textscy}
+\newunicodechar{ʊ}{\textupsilon}
+%% Close-mid
+\newunicodechar{ɵ}{\textbaro}
+\newunicodechar{ɤ}{\textramshorns}
+%% Open-mid
+\newunicodechar{ɛ}{\textepsilon}
+\newunicodechar{ɜ}{\textrevepsilon}
+\newunicodechar{ɞ}{\reflectbox{\textcloseepsilon}} %% Latest changes
+\newunicodechar{ʌ}{\textturnv}
+\newunicodechar{ɔ}{\textopeno}
+%% Near-open
+\newunicodechar{ɐ}{\textturna}
+\newunicodechar{ɶ}{\textscoelig}
+\newunicodechar{ɒ}{\textturnscripta}
+%% Non-Pulmonic
+\newunicodechar{ʘ}{\textbullseye}
+\newunicodechar{ǀ}{\textpipe}
+\newunicodechar{ǃ}{\textipa{!}}
+\newunicodechar{ǂ}{\textdoublebarpipe}
+\newunicodechar{ǁ}{\textdoublepipe}
+%% Voiced Implosives
+\newunicodechar{ɓ}{\texthtb}
+\newunicodechar{ɗ}{\texthtd}
+\newunicodechar{ʄ}{\texthtbardotlessj}
+\newunicodechar{ɠ}{\texthtg}
+\newunicodechar{ʛ}{\texthtscg}
+\newunicodechar{ʼ}{'}
+%% Suprasegmentals
+\newunicodechar{ˈ}{\textprimstress}
+\newunicodechar{ˌ}{\textsecstress}
+\newunicodechar{ː}{\textlengthmark}
+\newunicodechar{ˑ}{\texthalflength}
+\newunicodechar{ʍ}{\textturnw}
+\newunicodechar{ɥ}{\textturnh}
+\newunicodechar{ʜ}{\textsch}
+\newunicodechar{ʢ}{\textbarrevglotstop}
+\newunicodechar{ʡ}{\textbarglotstop}
+\newunicodechar{ɕ}{\textctc}
+\newunicodechar{ʑ}{\textctz}
+\newunicodechar{ɺ}{\textturnlonglegr}
+\newunicodechar{ɧ}{\texththeng}
+%% Diacritics
+\newunicodechar{ʰ}{\textsuperscript{h}}
+\newunicodechar{ʱ}{\textsuperscript{ɦ}}
+\newunicodechar{ʷ}{\textsuperscript{w}}
+\newunicodechar{ʲ}{\textsuperscript{j}}
+\newunicodechar{ˠ}{\textsuperscript{ɣ}}
+\newunicodechar{ˤ}{\textsuperscript{ʕ}}
+%% Tones independent diacritics
+\newunicodechar{ꜜ}{\textdownstep}
+\newunicodechar{ꜛ}{\textupstep}
+%% \newunicodechar{︎↗}{\textglobrise} %% Not working :'(
+%% \newunicodechar{↘}{\textglobfall} %% Need help here
+%    \end{macrocode}
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+% \end{implementation}
+% \Finale
